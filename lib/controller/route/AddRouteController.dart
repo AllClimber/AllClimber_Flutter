@@ -8,7 +8,6 @@ import '../../model/Route.dart' as route_model;
 
 class AddRouteController extends GetxController {
   var originalImage = Rxn<XFile?>();
-  var image = Rxn<XFile?>();
   var filteredImage = Rxn<XFile?>();
   var tappedColor = Rxn<Color?>();
   var sensitivity = 50.0.obs;
@@ -23,7 +22,7 @@ class AddRouteController extends GetxController {
   void pickImage() async {
     final XFile? pickedImage =
         await picker.pickImage(source: ImageSource.gallery);
-    image.value = pickedImage;
+    originalImage.value = pickedImage;
     tappedColor.value = null;
   }
 
@@ -46,8 +45,8 @@ class AddRouteController extends GetxController {
 
     final int sensitivity = this.sensitivity.value.toInt();
 
-    final String filteredImage =
-        await routeEditor.filter(photoPath: image, color: color, sensitivity: sensitivity);
+    final String filteredImage = await routeEditor.filter(
+        photoPath: image, color: color, sensitivity: sensitivity);
 
     this.filteredImage.value = XFile(filteredImage);
   }
@@ -69,8 +68,11 @@ class AddRouteController extends GetxController {
     ));
 
     if (result) {
-      Get.snackbar('Success', 'Route uploaded successfully', duration: 1.seconds);
       Get.back();
+      Get.snackbar(
+        'Success',
+        'Route uploaded successfully'
+      );
     } else {
       Get.snackbar('Error', 'Route upload failed').show();
     }

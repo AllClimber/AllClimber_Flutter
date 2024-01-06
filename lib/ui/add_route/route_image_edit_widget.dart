@@ -24,10 +24,10 @@ class RouteImageEditWidget extends StatelessWidget {
             controller.getImageColor(localPosition);
           },
           child: Center(
-            child: Obx(() => controller.image.value == null
+            child: Obx(() => controller.originalImage.value == null
                 ? const Text('No image selected.')
                 : Image.file(
-                    File(controller.image.value!.path),
+                    File(controller.originalImage.value!.path),
                     height: 300,
                     fit: BoxFit.fitHeight,
                   )),
@@ -56,7 +56,11 @@ class RouteImageEditWidget extends StatelessWidget {
           ),
         ),
         ElevatedButton(
-          onPressed: controller.pickImage,
+          onPressed: () async {
+            Get.snackbar('Success', 'Route uploaded successfully');
+
+            controller.pickImage();
+          },
           child: const Text('Select Image'),
         ),
       ],
