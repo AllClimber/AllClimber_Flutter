@@ -1,0 +1,30 @@
+{
+  "project_info": {
+    "project_number": "511248573165",
+    "firebase_url": "https://allclimber-default-rtdb.asia-southeast1.firebasedatabase.app",
+    "project_id": "allclimber",
+    "storage_bucket": "allclimber.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:511248573165:android:0211ae4464d9310e69a2e4",
+        "android_client_info": {
+          "package_name": "com.allclimbing.all_climbing"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDyg7NCz2swLZqPSbgN3Yx9OGMHvqkrllk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

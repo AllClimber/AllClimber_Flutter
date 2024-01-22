@@ -13,7 +13,11 @@ class RouteRepository {
   Future<List<Route>> getRoutes() async {
     var localRoutes = localDataSource.getRoutes();
     if (localRoutes.isEmpty) {
-      var remoteRoutes = remoteDataSource.getRoutes();
+      var remoteRoutes = await remoteDataSource.getRoutes();
+      for (var route in remoteRoutes) {
+        print('Name: ${route.name}, GymName: ${route.gymName}, Wall: ${route.wall}, Image: ${route.image}');
+      }
+
       localDataSource.saveRoutes(remoteRoutes);
       return remoteRoutes ?? [];
     }
