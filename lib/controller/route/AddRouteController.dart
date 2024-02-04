@@ -61,8 +61,10 @@ class AddRouteController extends GetxController {
 
     var result =
         await Get.find<RouteRepository>().uploadRoute(route_model.Route(
-      gym: gym,
+      gymId: gym,
+      gymName: gym,
       wall: wall,
+      grade: 'test',
       name: routeName,
       image: image,
     ));
