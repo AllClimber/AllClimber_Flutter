@@ -1,3 +1,4 @@
+import 'package:all_climbing/constant/gaps.dart';
 import 'package:all_climbing/data/data_source/route_local_source.dart';
 import 'package:all_climbing/data/data_source/route_remote_source.dart';
 import 'package:all_climbing/data/repository/route_repository.dart';
@@ -95,7 +96,7 @@ class RouteItem extends StatelessWidget {
               ),
             ),
           ),
-          const SizedBox(width: 8),
+          Gaps.w8,
           Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
