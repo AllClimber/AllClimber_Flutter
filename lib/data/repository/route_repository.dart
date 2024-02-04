@@ -1,5 +1,6 @@
 import 'package:all_climbing/data/data_source/route_local_source.dart';
 import 'package:all_climbing/data/data_source/route_remote_source.dart';
+import 'package:image_picker/image_picker.dart';
 
 import '../../model/Route.dart';
 
@@ -22,6 +23,10 @@ class RouteRepository {
       return remoteRoutes ?? [];
     }
     return localRoutes;
+  }
+
+  Future<String?> uploadRouteImage(XFile? xFile) async {
+    return await remoteDataSource.uploadRouteImage(xFile);
   }
 
   Future<bool> uploadRoute(Route route) async {

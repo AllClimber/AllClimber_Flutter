@@ -7,6 +7,7 @@ import 'package:image_picker/image_picker.dart';
 import '../../model/Route.dart' as route_model;
 
 class AddRouteController extends GetxController {
+  XFile? rawImage;
   var originalImage = Rxn<XFile?>();
   var filteredImage = Rxn<XFile?>();
   var tappedColor = Rxn<Color?>();
@@ -22,6 +23,9 @@ class AddRouteController extends GetxController {
   void pickImage() async {
     final XFile? pickedImage =
         await picker.pickImage(source: ImageSource.gallery);
+    if (pickedImage == null) return;
+
+    rawImage = pickedImage;
     originalImage.value = pickedImage;
     tappedColor.value = null;
   }
@@ -52,13 +56,19 @@ class AddRouteController extends GetxController {
   }
 
   void uploadRoute() async {
-    final String? image = filteredImage.value?.path;
-    //if (image == null) return;
-    // 테스트 용도로 잠시 빼둠 
+    final String? image = originalImage.value?.path;
+    if (image == null) return;
 
     final String gym = gymController.text;
     final String wall = wallController.text;
     final String routeName = routeController.text;
+
+    print(rawImage);
+
+    var imageUploadResult =
+        await Get.find<RouteRepository>().uploadRouteImage(rawImage);
+
+    if (imageUploadResult == null) return;
 
     var result =
         await Get.find<RouteRepository>().uploadRoute(route_model.Route(
@@ -67,7 +77,7 @@ class AddRouteController extends GetxController {
       wall: wall,
       grade: 'test',
       name: routeName,
-      image: /*image*/'test',
+      image: imageUploadResult,
     ));
 
     if (result) {
