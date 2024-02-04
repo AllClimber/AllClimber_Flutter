@@ -16,7 +16,6 @@ class RouteRemoteSource extends GetConnect {
       var route = await Route.fromJson(docSnapshot.data() as Map<String, dynamic>);
       routesList.add(route);
     }
-    print("Successfully completed");
   } catch (e) {
     print("Error completing: $e");
   }
@@ -24,8 +23,13 @@ class RouteRemoteSource extends GetConnect {
 }
 
   Future<bool> uploadRoute(Route route) async {
-    return true;
-    var response = await post('http://localhost:1234.com', route);
-    return response.isOk;
+    try {
+      var documentReference = await db.collection('routes').add(route.toJson());
+      print("Uploaded route with ID: ${documentReference.id}");
+      return true;
+    } catch (e) {
+      print("Error uploading route: $e");
+      return false;
+    }
   }
 }

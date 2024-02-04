@@ -53,7 +53,8 @@ class AddRouteController extends GetxController {
 
   void uploadRoute() async {
     final String? image = filteredImage.value?.path;
-    if (image == null) return;
+    //if (image == null) return;
+    // 테스트 용도로 잠시 빼둠 
 
     final String gym = gymController.text;
     final String wall = wallController.text;
@@ -66,7 +67,7 @@ class AddRouteController extends GetxController {
       wall: wall,
       grade: 'test',
       name: routeName,
-      image: image,
+      image: /*image*/'test',
     ));
 
     if (result) {
