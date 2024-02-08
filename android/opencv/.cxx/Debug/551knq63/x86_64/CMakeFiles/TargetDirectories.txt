@@ -1,0 +1,3 @@
+/Users/user/project/all_climbing/android/opencv/.cxx/Debug/551knq63/x86_64/CMakeFiles/rebuild_cache.dir
+/Users/user/project/all_climbing/android/opencv/.cxx/Debug/551knq63/x86_64/CMakeFiles/edit_cache.dir
+/Users/user/project/all_climbing/android/opencv/.cxx/Debug/551knq63/x86_64/CMakeFiles/opencv_jni_shared.dir

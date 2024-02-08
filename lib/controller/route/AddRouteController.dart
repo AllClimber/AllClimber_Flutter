@@ -47,7 +47,7 @@ class AddRouteController extends GetxController {
 
     final String filteredImage = await routeEditor.filter(
         photoPath: image, color: color, sensitivity: sensitivity);
-
+    print(filteredImage);
     this.filteredImage.value = XFile(filteredImage);
   }
 

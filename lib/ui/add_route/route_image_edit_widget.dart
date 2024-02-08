@@ -24,10 +24,16 @@ class RouteImageEditWidget extends StatelessWidget {
             controller.getImageColor(localPosition);
           },
           child: Center(
-            child: Obx(() => controller.originalImage.value == null
-                ? const Text('No image selected.')
+            child: Obx(() => controller.filteredImage.value == null
+                ? controller.originalImage.value == null
+                  ? const Text('No image selected.')
+                  : Image.file(
+                      File(controller.originalImage.value!.path),
+                      height: 300,
+                      fit: BoxFit.fitHeight,
+                    )
                 : Image.file(
-                    File(controller.originalImage.value!.path),
+                    File(controller.filteredImage.value!.path),
                     height: 300,
                     fit: BoxFit.fitHeight,
                   )),
