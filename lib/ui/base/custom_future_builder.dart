@@ -36,17 +36,34 @@ class CustomFutureBuilder<T> extends StatelessWidget {
 
         // Failure
         if (snapshot.hasError) {
-          return failureBuilder?.call(context) ?? const Text("Error");
+          return failureBuilder?.call(context) ??
+              const DefaultMessageBox(text: "Error");
         }
 
         // Empty
-        if (!snapshot.hasData) {
-          return emptyBuilder?.call(context) ?? const Text("Empty");
+        if (!snapshot.hasData || (data is List && data.isEmpty)) {
+          return emptyBuilder?.call(context) ??
+              const DefaultMessageBox(text: "Empty");
         }
 
         // Success
         return successBuilder.call(context, data as T);
       },
+    );
+  }
+}
+
+class DefaultMessageBox extends StatelessWidget {
+  const DefaultMessageBox({super.key, required this.text});
+  final String text;
+
+  @override
+  Widget build(BuildContext context) {
+    return Center(
+      child: Text(
+        text,
+        style: const TextStyle(fontWeight: FontWeight.w700),
+      ),
     );
   }
 }
